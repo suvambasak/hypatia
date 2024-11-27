@@ -41,15 +41,15 @@ if local_shell.count_screens() != 0:
 
 commands_to_run = []
 
-for run in get_tcp_run_list():
-    logs_ns3_dir = "runs/" + run["name"] + "/logs_ns3"
-    local_shell.remove_force_recursive(logs_ns3_dir)
-    local_shell.make_full_dir(logs_ns3_dir)
-    commands_to_run.append(
-        "cd ../../../ns3-sat-sim/simulator; "
-        "./waf --run=\"main_satnet --run_dir='../../paper/ns3_experiments/a_b/runs/" + run["name"] + "'\" "
-        "2>&1 | tee '../../paper/ns3_experiments/a_b/" + logs_ns3_dir + "/console.txt'"
-    )
+# for run in get_tcp_run_list():
+#     logs_ns3_dir = "runs/" + run["name"] + "/logs_ns3"
+#     local_shell.remove_force_recursive(logs_ns3_dir)
+#     local_shell.make_full_dir(logs_ns3_dir)
+#     commands_to_run.append(
+#         "cd ../../../ns3-sat-sim/simulator; "
+#         "./waf --run=\"main_satnet --run_dir='../../paper/ns3_experiments/a_b/runs/" + run["name"] + "'\" "
+#         "2>&1 | tee '../../paper/ns3_experiments/a_b/" + logs_ns3_dir + "/console.txt'"
+#     )
 
 for run in get_pings_run_list():
     logs_ns3_dir = "runs/" + run["name"] + "/logs_ns3"
