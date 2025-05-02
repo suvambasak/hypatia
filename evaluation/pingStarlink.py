@@ -1,12 +1,17 @@
 
-import math
+'''
+This script computes the RTT between three ground station pairs 
+(Delhi to New-york, Moscow to Paris, Tokyo to Sydney) over 
+Starlink LEO constellation.
+'''
 
+
+import math
 import time
 
 import exputil
 
 from paper.satellite_networks_state.main_helper import MainHelper
-
 
 BASE_NAME = f"starlink_1584"
 NICE_NAME = f"Starlink-1584"
@@ -90,10 +95,16 @@ dynamic_state = "dynamic_state_" + \
 
 full_satellite_network_isls = f"{BASE_NAME}_isls_plus_grid_ground_stations_top_100_algorithm_free_one_only_over_isls"
 chosen_pairs = [
+
+    # Delhi to New-york
     (f"{BASE_NAME}_isls", (NUM_ORBS*NUM_SATS_PER_ORB)+1, (NUM_ORBS *
      NUM_SATS_PER_ORB)+9, "TcpNewReno", full_satellite_network_isls),
+
+    # Moscow to Paris
     (f"{BASE_NAME}_isls", (NUM_ORBS*NUM_SATS_PER_ORB) +
      21, (NUM_ORBS*NUM_SATS_PER_ORB)+24, "TcpNewReno", full_satellite_network_isls),
+
+    # Tokyo to Sydney
     (f"{BASE_NAME}_isls", (NUM_ORBS*NUM_SATS_PER_ORB) +
      0, (NUM_ORBS*NUM_SATS_PER_ORB)+84, "TcpNewReno", full_satellite_network_isls),
 ]

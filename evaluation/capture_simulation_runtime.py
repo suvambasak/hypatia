@@ -1,3 +1,9 @@
+
+'''
+This script is used to test how simulation runtime of Hypatia increases with
+the size of LEO constellation. 
+'''
+
 import csv
 import math
 import os
@@ -19,7 +25,8 @@ def CSV_logger(data, csv_file_path):
         writer.writerow(data)
 
 
-for size in range(50, 80, 5):
+# Record the time taken to run the simulation
+for size in range(20, 80, 5):
 
     start_time = time.perf_counter()
 
@@ -108,6 +115,11 @@ for size in range(50, 80, 5):
     #     (f"{BASE_NAME}_isls", 906, 966, "TcpNewReno", full_satellite_network_isls),
     # ]
     chosen_pairs = []
+
+    ######################################################################
+    # Compute ping for same 50 routes in LEOCraft
+    ######################################################################
+
     for gid in range(50):
         chosen_pairs.append(
             (f"{BASE_NAME}_isls", (NUM_ORBS*NUM_SATS_PER_ORB)+gid, (NUM_ORBS *
@@ -273,7 +285,6 @@ for size in range(50, 80, 5):
     end_time = time.perf_counter()
 
     print(f'''Time: {round((end_time-start_time)/60, 2)}m ''')
-
     CSV_logger(
         {
             'o': NUM_ORBS,
